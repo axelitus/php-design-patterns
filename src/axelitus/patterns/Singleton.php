@@ -14,11 +14,11 @@
 namespace axelitus\patterns;
 
 /**
- * Singleton Pattern class.
+ * Class Singleton
  *
  * A base class to implement the Singleton Design Pattern.
  *
- * @internal
+ * @package axelitus\patterns
  * @since       0.1     introduced class Singleton
  */
 abstract class Singleton
@@ -101,7 +101,6 @@ abstract class Singleton
     public static function kill()
     {
         static::$instance = null;
-        unset(static::$instance);
     }
 
     /**
@@ -111,11 +110,11 @@ abstract class Singleton
      * the initialization method if exists to auto-initialize (configure) the singleton.
      *
      * @static
-     * @since       0.1     introduced new method renew($params = null)
+     * @since       0.1     introduced new method reinstance($params = null)
      * @param mixed $params,...     The singleton's initialization parameters
      * @return mixed    The newly created singleton's instance
      */
-    public static function renew($params = null)
+    public static function reinstance($params = null)
     {
         static::kill();
         return call_user_func_array(get_called_class() . '::instance', func_get_args());
