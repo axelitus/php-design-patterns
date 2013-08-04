@@ -68,7 +68,8 @@ abstract class Multiton
      * Forges a new instance of this class or returns the existing one identified by key. The singletons are
      * key-named to identify them. The parameters are passed along to the initialization method if exists to
      * auto-initialize (configure) the newly created instance. ALL params are passed, the first one being the
-     * name (key) of the instance.
+     * name (key) of the instance. If no key parameter is given, the default instance is created (identified
+     * by the string 'default').
      *
      * @static
      * @since       0.1     introduced public static function instance($key, $params = null)
@@ -76,7 +77,7 @@ abstract class Multiton
      * @param mixed $params,... The instance's initialization parameters
      * @return mixed    The newly created instance
      */
-    public static function instance($key, $params = null)
+    public static function instance($key = 'default', $params = null)
     {
         if (!isset(static::$instances[$key]) or !static::$instances[$key] instanceof static) {
             static::$instances[$key] = new static();
@@ -98,18 +99,23 @@ abstract class Multiton
     /**
      * Kills the given singleton's instance.
      *
+     * Sets the multiton instance identified by key to null, so the next time instance is called with the
+     * given key a new instance should be created for that key.
+     *
      * @static
      * @param string $key        The instance's key (name)
      * @since       0.1     introduced public static function kill($key)
      */
-    public static function kill($key)
+    public static function kill($key = 'default')
     {
         static::$instances[$key] = null;
         unset(static::$instances[$key]);
     }
 
     /**
-     * Clears the multiton's instances array.
+     * Clears the Multiton's instances array.
+     *
+     * Sets the instances array to an empty array.
      *
      * @static
      * @since       0.1     introduced public static function clear()
@@ -120,10 +126,10 @@ abstract class Multiton
     }
 
     /**
-     * Forges a new singleton instance identified by the given key replacing the previous one if exists and returns
+     * Forges a new Multiton instance identified by the given key replacing the previous one if exists and returns
      * the newly created instance.
      *
-     * Forges a new singleton instance identified by the given key replacing the previous one if exists and returns
+     * Forges a new Multiton instance identified by the given key replacing the previous one if exists and returns
      * the newly created instance. The parameters are passed along to the initialization method if exists to
      * auto-initialize (configure) the newly created instance. ALL params are passed, the first one being the
      * name (key) of the instance.
@@ -131,19 +137,32 @@ abstract class Multiton
      * @static
      * @since       0.1     introduced public static function reinstance($key, $params = null)
      * @param string $key        The instance's key (name)
-     * @param mixed $params,...     The singleton's initialization parameters
-     * @return mixed    The newly created singleton's instance
+     * @param mixed $params,...     The Multiton's initialization parameters
+     * @return mixed    The newly created Multiton's instance
      */
-    public static function reinstance($key, $params = null)
+    public static function reinstance($key = 'default', $params = null)
     {
         static::kill($key);
         return call_user_func_array(get_called_class() . '::instance', func_get_args());
     }
 
+    /**
+     * Counts the Multiton instances loaded.
+     *
+     * Returns the number of instances in the Multiton's instances array.
+     *
+     * @static
+     * @return int
+     */
+    public static function count()
+    {
+        return count(static::$instances);
+    }
+
     //endregion
 
 
-    //region Singleton Pattern Enforcement
+    //region Multiton Pattern Enforcement
 
     /**
      * No serialization allowed
