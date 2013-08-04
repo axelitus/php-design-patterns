@@ -65,14 +65,14 @@ abstract class Multiton
     /**
      * Forges a new instance of this class or returns the existing one identified by key.
      *
-     * Forges a new instance of this class or returns the existing one identified by key. The singletons are
+     * Forges a new instance of this class or returns the existing one identified by key. The Multitons are
      * key-named to identify them. The parameters are passed along to the initialization method if exists to
      * auto-initialize (configure) the newly created instance. ALL params are passed, the first one being the
      * name (key) of the instance. If no key parameter is given, the default instance is created (identified
      * by the string 'default').
      *
      * @static
-     * @since       0.1     introduced public static function instance($key, $params = null)
+     * @since       0.1     introduced public static function instance($key = 'default', $params = null)
      * @param string $key        The instance's key (name)
      * @param mixed $params,... The instance's initialization parameters
      * @return mixed    The newly created instance
@@ -97,14 +97,14 @@ abstract class Multiton
     }
 
     /**
-     * Kills the given singleton's instance.
+     * Kills the given Multiton's instance.
      *
      * Sets the multiton instance identified by key to null, so the next time instance is called with the
      * given key a new instance should be created for that key.
      *
      * @static
+     * @since       0.1     introduced public static function kill($key = 'default')
      * @param string $key        The instance's key (name)
-     * @since       0.1     introduced public static function kill($key)
      */
     public static function kill($key = 'default')
     {
@@ -135,7 +135,7 @@ abstract class Multiton
      * name (key) of the instance.
      *
      * @static
-     * @since       0.1     introduced public static function reinstance($key, $params = null)
+     * @since       0.1     introduced public static function reinstance($key = 'default', $params = null)
      * @param string $key        The instance's key (name)
      * @param mixed $params,...     The Multiton's initialization parameters
      * @return mixed    The newly created Multiton's instance
@@ -152,6 +152,7 @@ abstract class Multiton
      * Returns the number of instances in the Multiton's instances array.
      *
      * @static
+     * @since       0.1     introduced public static function count()
      * @return int
      */
     public static function count()
