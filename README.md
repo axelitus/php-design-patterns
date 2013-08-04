@@ -1,6 +1,6 @@
 # Design Patterns for PHP
 
-A PHP package that contains base clases to easily extend and implement some design patterns.
+A framework independant PHP  package that contains base clases to easily extend and implement some design patterns.
 
 ## Package Information
 
