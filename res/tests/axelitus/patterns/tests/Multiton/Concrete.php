@@ -7,8 +7,8 @@
  * @author      Axel Pardemann (axelitusdev@gmail.com)
  * @license     MIT License
  * @copyright   2013 - Axel Pardemann
- * @link        http://axelitus.mx/projects/patterns
- * @source      https://github.com/axelitusdev/patterns
+ * @link        http://axelitus.mx/projects/php-patterns
+ * @source      https://github.com/axelitus/php-patterns
  */
 
 namespace axelitus\patterns\tests;
