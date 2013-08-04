@@ -1,22 +1,27 @@
 <?php
 /**
- * Part of the axelitus\asseter package.
+ * Part of the axelitus\patterns package.
  *
- * @package     axelitus\asseter\test
+ * @package     axelitus\patterns\test
  * @version     0.1
  * @author      Axel Pardemann (axelitusdev@gmail.com)
  * @license     MIT License
  * @copyright   2013 - Axel Pardemann
- * @link        http://axelitus.mx/projects/asseter
- * @source      https://github.com/axelitusdev/asseter
+ * @link        http://axelitus.mx/projects/patterns
+ * @source      https://github.com/axelitusdev/patterns
  */
 
-namespace axelitus\asseter\tests;
+namespace axelitus\patterns\tests;
 
+/**
+ * @uses axelitus\patterns
+ */
+use axelitus\patterns as src;
+
+/**
+ * Class TestCase
+ * @package axelitus\patterns\tests
+ */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
-    public function test_default()
-    {
-        $this->assertTrue(true, "This is a default test to see everything is working fine.");
-    }
 }
