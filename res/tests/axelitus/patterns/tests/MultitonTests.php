@@ -29,48 +29,48 @@ class MultitonTests extends TestCase
      */
     public function test_behavior()
     {
-        $m1 = MultitonConcrete::instance();
+        $m1 = Multiton_Concrete::instance();
         $this->assertTrue(
             $m1 instanceof src\Multiton,
             "The object \$m1 is not an instance of axelitus\\patterns\\Multiton"
         );
         $this->assertTrue(
-            $m1 instanceof MultitonConcrete,
-            "The object \$m1 is not an instance of axelitus\\patterns\\tests\\MultitonConcrete"
+            $m1 instanceof Multiton_Concrete,
+            "The object \$m1 is not an instance of axelitus\\patterns\\tests\\Multiton_Concrete"
         );
 
-        $m2 = MultitonConcrete::instance();
+        $m2 = Multiton_Concrete::instance();
         $this->assertTrue(
             $m2 instanceof src\Multiton,
             "The object \$m2 is not an instance of axelitus\\patterns\\Multiton"
         );
         $this->assertTrue(
-            $m2 instanceof MultitonConcrete,
-            "The object \$m2 is not an instance of axelitus\\patterns\\tests\\MultitonConcrete"
+            $m2 instanceof Multiton_Concrete,
+            "The object \$m2 is not an instance of axelitus\\patterns\\tests\\Multiton_Concrete"
         );
         $this->assertTrue($m1 === $m2, "The objects \$m1 and \$m2 are not the same instance but they should.");
 
-        MultitonConcrete::kill();
-        $m3 = MultitonConcrete::instance();
+        Multiton_Concrete::kill();
+        $m3 = Multiton_Concrete::instance();
         $this->assertTrue(
             $m3 instanceof src\Multiton,
             "The object \$m3 is not an instance of axelitus\\patterns\\Multiton"
         );
         $this->assertTrue(
-            $m3 instanceof MultitonConcrete,
-            "The object \$m3 is not an instance of axelitus\\patterns\\tests\\MultitonConcrete"
+            $m3 instanceof Multiton_Concrete,
+            "The object \$m3 is not an instance of axelitus\\patterns\\tests\\Multiton_Concrete"
         );
         $this->assertEquals(true, $m1 !== $m3, "The objects \$m1 and \$m3 are the same instance but they should not.");
         $this->assertEquals(true, $m2 !== $m3, "The objects \$m2 and \$m3 are the same instance but they should not.");
 
-        $m4 = MultitonConcrete::reinstance();
+        $m4 = Multiton_Concrete::reinstance();
         $this->assertTrue(
             $m3 instanceof src\Multiton,
             "The object \$m3 is not an instance of axelitus\\patterns\\Multiton"
         );
         $this->assertTrue(
-            $m3 instanceof MultitonConcrete,
-            "The object \$m3 is not an instance of axelitus\\patterns\\tests\\MultitonConcrete"
+            $m3 instanceof Multiton_Concrete,
+            "The object \$m3 is not an instance of axelitus\\patterns\\tests\\Multiton_Concrete"
         );
         $this->assertEquals(true, $m1 !== $m4, "The objects \$m1 and \$m4 are the same instance but they should not.");
         $this->assertEquals(true, $m2 !== $m4, "The objects \$m2 and \$m4 are the same instance but they should not.");
@@ -84,12 +84,12 @@ class MultitonTests extends TestCase
      */
     public function test_kill()
     {
-        $m1 = MultitonConcrete::instance();
-        $m2 = MultitonConcrete::instance('second');
-        $m3 = MultitonConcrete::instance('third');
+        $m1 = Multiton_Concrete::instance();
+        $m2 = Multiton_Concrete::instance('second');
+        $m3 = Multiton_Concrete::instance('third');
 
-        MultitonConcrete::kill('second');
-        $m4 = MultitonConcrete::instance('second');
+        Multiton_Concrete::kill('second');
+        $m4 = Multiton_Concrete::instance('second');
         $this->assertFalse($m2 === $m4, "The objects \$m2 and \$m4 are the same instance but they should not.");
     }
 
@@ -100,15 +100,15 @@ class MultitonTests extends TestCase
      */
     public function test_multiple()
     {
-        $m1 = MultitonConcrete::instance();
-        $m2 = MultitonConcrete::instance('other');
+        $m1 = Multiton_Concrete::instance();
+        $m2 = Multiton_Concrete::instance('other');
         $this->assertFalse($m1 === $m2, "The objects \$m1 and \$m2 are the same instance but they should not.");
 
-        $m3 = MultitonConcrete::instance('other');
+        $m3 = Multiton_Concrete::instance('other');
         $this->assertTrue($m2 === $m3, "The objects \$m2 and \$m3 are not the same instance but they should.");
 
-        $m4 = MultitonConcrete2::instance();
-        $m5 = MultitonConcrete2::instance('other');
+        $m4 = Multiton_Concrete2::instance();
+        $m5 = Multiton_Concrete2::instance('other');
         $this->assertFalse($m1 === $m4, "The objects \$m1 and \$m4 are the same instance but they should not.");
         $this->assertFalse($m2 === $m5, "The objects \$m2 and \$m5 are the same instance but they should not.");
     }
@@ -121,29 +121,29 @@ class MultitonTests extends TestCase
      */
     public function test_count()
     {
-        MultitonConcrete::clear();
-        $this->assertEquals(0, MultitonConcrete::count());
+        Multiton_Concrete::clear();
+        $this->assertEquals(0, Multiton_Concrete::count());
 
-        $m1 = MultitonConcrete::instance();
-        $this->assertEquals(1, MultitonConcrete::count());
+        $m1 = Multiton_Concrete::instance();
+        $this->assertEquals(1, Multiton_Concrete::count());
 
-        $m2 = MultitonConcrete::instance('second');
-        $this->assertEquals(2, MultitonConcrete::count());
+        $m2 = Multiton_Concrete::instance('second');
+        $this->assertEquals(2, Multiton_Concrete::count());
 
-        $m3 = MultitonConcrete::instance('third');
-        $this->assertEquals(3, MultitonConcrete::count());
+        $m3 = Multiton_Concrete::instance('third');
+        $this->assertEquals(3, Multiton_Concrete::count());
 
-        $m4 = MultitonConcrete::instance('fourth');
-        $this->assertEquals(4, MultitonConcrete::count());
+        $m4 = Multiton_Concrete::instance('fourth');
+        $this->assertEquals(4, Multiton_Concrete::count());
 
-        MultitonConcrete::kill('second');
-        $this->assertEquals(3, MultitonConcrete::count());
+        Multiton_Concrete::kill('second');
+        $this->assertEquals(3, Multiton_Concrete::count());
 
-        MultitonConcrete::kill();
-        $this->assertEquals(2, MultitonConcrete::count());
+        Multiton_Concrete::kill();
+        $this->assertEquals(2, Multiton_Concrete::count());
 
-        MultitonConcrete::clear();
-        $this->assertEquals(0, MultitonConcrete::count());
+        Multiton_Concrete::clear();
+        $this->assertEquals(0, Multiton_Concrete::count());
     }
 
     /**
@@ -153,8 +153,8 @@ class MultitonTests extends TestCase
      */
     public function test_inheritance()
     {
-        $m1 = MultitonConcrete::instance();
-        $m2 = MultitonConcrete2::instance();
+        $m1 = Multiton_Concrete::instance();
+        $m2 = Multiton_Concrete2::instance();
         $this->assertFalse($m1 === $m2, "The objects \$m1 and \$m2 are the same instance but they should not.");
     }
 }

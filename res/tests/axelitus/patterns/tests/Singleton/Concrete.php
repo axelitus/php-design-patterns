@@ -19,12 +19,12 @@ namespace axelitus\patterns\tests;
 use axelitus\patterns as src;
 
 /**
- * Class SingletonConcrete
+ * Class Singleton_Concrete
  *
  * An implementation of the Singleton class for running the tests.
  *
  * @package axelitus\patterns\tests
  */
-class SingletonConcrete extends src\Singleton
+class Singleton_Concrete extends src\Singleton
 {
 }

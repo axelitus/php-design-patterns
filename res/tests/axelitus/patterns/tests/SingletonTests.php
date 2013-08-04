@@ -29,25 +29,25 @@ class SingletonTests extends TestCase
      */
     public function test_behavior()
     {
-        $s1 = SingletonConcrete::instance();
+        $s1 = Singleton_Concrete::instance();
         $this->assertTrue($s1 instanceof src\Singleton, "The object \$s1 is not an instance of axelitus\\patterns\\Singleton");
-        $this->assertTrue($s1 instanceof SingletonConcrete, "The object \$s1 is not an instance of axelitus\\patterns\\tests\\SingletonConcrete");
+        $this->assertTrue($s1 instanceof Singleton_Concrete, "The object \$s1 is not an instance of axelitus\\patterns\\tests\\Singleton_Concrete");
 
-        $s2 = SingletonConcrete::instance();
+        $s2 = Singleton_Concrete::instance();
         $this->assertTrue($s2 instanceof src\Singleton, "The object \$s2 is not an instance of axelitus\\patterns\\Singleton");
-        $this->assertTrue($s2 instanceof SingletonConcrete, "The object \$s2 is not an instance of axelitus\\patterns\\tests\\SingletonConcrete");
+        $this->assertTrue($s2 instanceof Singleton_Concrete, "The object \$s2 is not an instance of axelitus\\patterns\\tests\\Singleton_Concrete");
         $this->assertTrue($s1 === $s2, "The objects \$s1 and \$s2 are not the same instance but they should.");
 
-        SingletonConcrete::kill();
-        $s3 = SingletonConcrete::instance();
+        Singleton_Concrete::kill();
+        $s3 = Singleton_Concrete::instance();
         $this->assertTrue($s3 instanceof src\Singleton, "The object \$s3 is not an instance of axelitus\\patterns\\Singleton");
-        $this->assertTrue($s3 instanceof SingletonConcrete, "The object \$s3 is not an instance of axelitus\\patterns\\tests\\SingletonConcrete");
+        $this->assertTrue($s3 instanceof Singleton_Concrete, "The object \$s3 is not an instance of axelitus\\patterns\\tests\\Singleton_Concrete");
         $this->assertFalse($s1 === $s3, "The objects \$s1 and \$s3 are the same instance but they should not.");
         $this->assertFalse($s2 === $s3, "The objects \$s2 and \$s3 are the same instance but they should not.");
 
-        $s4 = SingletonConcrete::reinstance();
+        $s4 = Singleton_Concrete::reinstance();
         $this->assertTrue($s3 instanceof src\Singleton, "The object \$s3 is not an instance of axelitus\\patterns\\Singleton");
-        $this->assertTrue($s3 instanceof SingletonConcrete, "The object \$s3 is not an instance of axelitus\\patterns\\tests\\SingletonConcrete");
+        $this->assertTrue($s3 instanceof Singleton_Concrete, "The object \$s3 is not an instance of axelitus\\patterns\\tests\\Singleton_Concrete");
         $this->assertFalse($s1 === $s4, "The objects \$s1 and \$s4 are the same instance but they should not.");
         $this->assertFalse($s2 === $s4, "The objects \$s2 and \$s4 are the same instance but they should not.");
         $this->assertFalse($s3 === $s4, "The objects \$s3 and \$s4 are the same instance but they should not.");
@@ -60,8 +60,8 @@ class SingletonTests extends TestCase
      */
     public function test_inheritance()
     {
-        $s1 = SingletonConcrete::instance();
-        $s2 = SingletonConcrete2::instance();
+        $s1 = Singleton_Concrete::instance();
+        $s2 = Singleton_Concrete2::instance();
         $this->assertFalse($s1 === $s2, "The objects \$s1 and \$s2 are the same instance but they should not.");
     }
 }
