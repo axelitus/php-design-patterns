@@ -39,7 +39,7 @@ abstract class Singleton
     /**
      * @static
      * @since       0.1     introduced $instance
-     * @type    mixed       The singleton's instance
+     * @type    mixed       The Singleton's instance
      **/
     protected static $instance = null;
 
@@ -63,15 +63,15 @@ abstract class Singleton
     //region Static Methods/Functions
 
     /**
-     * Forges a new instance of the singleton or returns the existing one.
+     * Forges a new instance of the Singleton or returns the existing one.
      *
-     * Forges a new instance of the singleton or returns the existing one. The parameters are passed along to the
-     * initialization method if exists to auto-initialize (configure) the newly created singleton instance.
+     * Forges a new instance of the Singleton or returns the existing one. The parameters are passed along to the
+     * initialization method if exists to auto-initialize (configure) the newly created Singleton instance.
      *
      * @since       0.1     introduced new method instance($params = null)
      * @static
-     * @param   mixed $params,...     The singleton's initialization parameters
-     * @return  mixed       The newly created singleton's instance
+     * @param   mixed $params,...     The Singleton's initialization parameters
+     * @return  mixed       The newly created Singleton's instance
      */
     public static function instance($params = null)
     {
@@ -93,7 +93,10 @@ abstract class Singleton
     }
 
     /**
-     * Kills the singleton's instance.
+     * Kills the Singleton's instance.
+     *
+     * Sets the Singleton instance to null, so the next time instance() is called a new instance
+     * should be created.
      *
      * @static
      * @since       0.1     introduced new method kill()
@@ -104,15 +107,15 @@ abstract class Singleton
     }
 
     /**
-     * Forges a new instance of the singleton and replaces the existing one.
+     * Forges a new instance of the Singleton and replaces the existing one.
      *
-     * Forges a new instance of the singleton and replaces the existing one. The parameters are passed along to
-     * the initialization method if exists to auto-initialize (configure) the singleton.
+     * Forges a new instance of the Singleton and replaces the existing one. The parameters are passed along to
+     * the initialization method if exists to auto-initialize (configure) the Singleton.
      *
      * @static
      * @since       0.1     introduced new method reinstance($params = null)
-     * @param mixed $params,...     The singleton's initialization parameters
-     * @return mixed    The newly created singleton's instance
+     * @param mixed $params,...     The Singleton's initialization parameters
+     * @return mixed    The newly created Singleton's instance
      */
     public static function reinstance($params = null)
     {
