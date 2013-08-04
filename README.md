@@ -8,7 +8,7 @@ A PHP package that contains base clases to easily extend and implement some desi
 * **Namespace:** axelitus\patterns
 * **Author:** Axel Pardemann (axelitusdev@gmail.com)
 * **Roadmap:** [axelitus/php-patterns at Interstate]()
-* **Repository**: [axelitus/php-patterns at GitHub](https://github.com/axelitus/php-patterns "asseter at GitHub")
+* **Repository**: [axelitus/php-patterns at GitHub](https://github.com/axelitus/php-patterns "patterns at GitHub")
 * **Build Status (master):** [![Build Status](https://secure.travis-ci.org/axelitus/php-patterns.png?branch=master)](http://travis-ci.org/axelitus/php-patterns)
 * **Build Status (develop):** [![Build Status](https://secure.travis-ci.org/axelitus/php-patterns.png?branch=develop)](http://travis-ci.org/axelitus/php-patterns)
 * **Composer Package:** [axelitus/php-patterns at Packagist](http://packagist.org/packages/axelitus/php-patterns "axelitus/php-patterns at Packagist")
