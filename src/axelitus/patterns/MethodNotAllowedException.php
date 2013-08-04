@@ -14,11 +14,11 @@
 namespace axelitus\patterns;
 
 /**
- * Method Not Allowed Exception class.
+ * Class MethodNotAllowedException
  *
  * An exception that is thrown when a method is not allowed.
  *
- * @internal
+ * @package axelitus\patterns
  * @since       0.1     introduced class MethodNotAllowedException extends RuntimeException
  */
 class MethodNotAllowedException extends \RuntimeException
