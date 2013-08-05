@@ -29,31 +29,31 @@ abstract class GenericMultiton
     //region Constants
 
     /**
-     * @since   0.1     introduced INIT_METHOD_NAME
+     * @since   0.1     introduced const INIT_METHOD_NAME = 'init';
      * @type    string      The initialization method name (declaration of this method is optional)
      */
     const INIT_METHOD_NAME = 'init';
 
     /**
-     * @since   0.1     introduced INITIALIZED
+     * @since   0.1     introduced const INITIALIZED = 'initialized';
      * @type    string      Instances initialization array key
      */
     const INITIALIZED = 'initialized';
 
     /**
-     * @since   0.1     introduced INSTANCES_CLASS
+     * @since   0.1     introduced const INSTANCES_CLASS = 'instances_class';
      * @type    string      Instances class array key
      */
     const INSTANCES_CLASS = 'instances_class';
 
     /**
-     * @since   0.1     introduced INSTANCES_FORGEABLE
+     * @since   0.1     introduced const INSTANCES_FORGEABLE = 'instances_forgeable';
      * @type    string      Instances forgeable array key
      */
     const INSTANCES_FORGEABLE = 'instances_forgeable';
 
     /**
-     * @since   0.1     introduced INSTANCES_OBJECTS
+     * @since   0.1     introduced const INSTANCES_OBJECTS = 'instances_objects';
      * @type    string      Instances objects array key
      */
     const INSTANCES_OBJECTS = 'instances_objects';
@@ -110,7 +110,9 @@ abstract class GenericMultiton
             try {
                 // Ensure we have anything that resembles a class (that means no empty string),
                 // otherwise default to the called class name.
-                $class = static::$instances[$derived_class][static::INSTANCES_CLASS] = (isset(static::$instances_class) and is_string(static::$instances_class) and !empty(static::$instances_class)) ? static::$instances_class : static::$instances[$derived_class][static::INSTANCES_CLASS];
+                $class = static::$instances[$derived_class][static::INSTANCES_CLASS] = (isset(static::$instances_class) and is_string(
+                        static::$instances_class
+                    ) and !empty(static::$instances_class)) ? static::$instances_class : static::$instances[$derived_class][static::INSTANCES_CLASS];
 
                 if (!class_exists($class)) {
                     throw new ClassNotFoundException('The given $instances_class [' . static::$instances[$derived_class][static::INSTANCES_CLASS] . '] does not exist.');
@@ -119,9 +121,7 @@ abstract class GenericMultiton
                 throw new ClassNotFoundException('The given $instances_class [' . static::$instances[$derived_class][static::INSTANCES_CLASS] . '] does not exist.', 0, $ex);
             }
 
-            $forgeable = __NAMESPACE__ . '\Forgeable';
-            $implements = class_implements($class);
-            if (in_array($forgeable, $implements)) {
+            if (Utils::class_implements($class, __NAMESPACE__ . '\Forgeable')) {
                 static::$instances[$derived_class][static::INSTANCES_FORGEABLE] = true;
             }
 
