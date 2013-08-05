@@ -26,10 +26,22 @@ abstract class Singleton
     //region Constants
 
     /**
-     * @since   0.1     introduced const INIT_METHOD_NAME = 'init'
+     * @since   0.1     introduced const INIT_METHOD_NAME = 'init';
      * @type    string      The initialization method name (declaration of this method is optional)
      */
     const INIT_METHOD_NAME = 'init';
+
+    /**
+     * @since   0.1     introduced const INSTANCES_FORGEABLE = 'instances_forgeable';
+     * @type    string      The instances forgeable array key
+     */
+    const INSTANCES_FORGEABLE = 'instances_forgeable';
+
+    /**
+     * @since   0.1     introduced const INSTANCES_OBJECT = 'instances_object';
+     * @type    string      The instances object array key
+     */
+    const INSTANCES_OBJECT = 'instances_object';
 
     //endregion
 
@@ -77,27 +89,39 @@ abstract class Singleton
     public static function instance($params = null)
     {
         $derived_class = static::prepare_instances();
-        if (empty(static::$instances) or !isset(static::$instances[$derived_class])
-            or !(static::$instances[$derived_class] instanceof $derived_class)
+        if (empty(static::$instances) or !isset(static::$instances[$derived_class][static::INSTANCES_OBJECT])
+            or !(static::$instances[$derived_class][static::INSTANCES_OBJECT] instanceof $derived_class)
         ) {
-            // TODO: if implements Forgeable call forge instead
-            static::$instances[$derived_class] = new $derived_class($params);
+            if ((is_bool(static::$instances[$derived_class][static::INSTANCES_FORGEABLE])
+                    and static::$instances[$derived_class][static::INSTANCES_FORGEABLE])
+                or (static::$instances[$derived_class][static::INSTANCES_FORGEABLE] = Utils::class_implements(
+                    $derived_class,
+                    __NAMESPACE__ . '\Forgeable'
+                ))
+            ) {
+                static::$instances[$derived_class][static::INSTANCES_OBJECT] = $derived_class::forge($params);
+            } else {
+                static::$instances[$derived_class][static::INSTANCES_OBJECT] = new $derived_class($params);
+            }
 
-            if (method_exists(static::$instances[$derived_class], static::INIT_METHOD_NAME) and is_callable(
+            if (method_exists(
+                    static::$instances[$derived_class][static::INSTANCES_OBJECT],
+                    static::INIT_METHOD_NAME
+                ) and is_callable(
                     array(
-                        static::$instances[$derived_class],
+                        static::$instances[$derived_class][static::INSTANCES_OBJECT],
                         static::INIT_METHOD_NAME
                     )
                 )
             ) {
                 call_user_func_array(
-                    array(static::$instances[$derived_class], static::INIT_METHOD_NAME),
+                    array(static::$instances[$derived_class][static::INSTANCES_OBJECT], static::INIT_METHOD_NAME),
                     func_get_args()
                 );
             }
         }
 
-        return static::$instances[$derived_class];
+        return static::$instances[$derived_class][static::INSTANCES_OBJECT];
     }
 
     /**
@@ -112,7 +136,7 @@ abstract class Singleton
     public static function kill()
     {
         $derived_class = static::prepare_instances();
-        static::$instances[get_called_class()] = null;
+        static::$instances[$derived_class][static::INSTANCES_OBJECT] = null;
     }
 
     /**
@@ -144,7 +168,15 @@ abstract class Singleton
     protected static function prepare_instances()
     {
         $derived_class = get_called_class();
-        static::$instances = (isset(static::$instances) and is_array(static::$instances)) ? static::$instances : [];
+        static::$instances = (isset(static::$instances) and is_array(
+                static::$instances
+            )) ? static::$instances : [];
+        static::$instances[$derived_class] = (isset(static::$instances[$derived_class]) and is_array(
+                static::$instances[$derived_class]
+            )) ? static::$instances[$derived_class] : [
+            static::INSTANCES_FORGEABLE => null,
+            static::INSTANCES_OBJECT => null
+        ];
 
         return $derived_class;
     }
