@@ -36,7 +36,7 @@ Being PSR-2 compliant means this package can be easily installed by using [Compo
 All classes are referenced to the base namespace if not otherwise stated.
 
  - **Singleton** - Description
- - **MethodNotAllowedException** - Description
+ - **Exception_MethodNotAllowed** - Description
 
 ## How to install
 

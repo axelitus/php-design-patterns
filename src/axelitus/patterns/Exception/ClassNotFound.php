@@ -14,13 +14,13 @@
 namespace axelitus\patterns;
 
 /**
- * Class MethodNotAllowedException
+ * Class Exception_ClassNotFound
  *
- * An exception that is thrown when a method is not allowed.
+ * An exception that is thrown when a class is not found.
  *
  * @package axelitus\patterns
- * @since       0.1     introduced class MethodNotAllowedException extends \RuntimeException
+ * @since       0.1     introduced class Exception_ClassNotFound extends \RuntimeException
  */
-class MethodNotAllowedException extends \RuntimeException
+class Exception_ClassNotFound extends \RuntimeException
 {
 }

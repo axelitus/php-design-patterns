@@ -99,7 +99,7 @@ abstract class GenericMultiton
      *
      * @static
      * @since       0.1     introduced protected static function init()
-     * @throws ClassNotFoundException
+     * @throws Exception_ClassNotFound
      * @return string   The result of calling get_called_class()
      */
     protected static function init()
@@ -115,10 +115,10 @@ abstract class GenericMultiton
                     ) and !empty(static::$instances_class)) ? static::$instances_class : static::$instances[$derived_class][static::INSTANCES_CLASS];
 
                 if (!class_exists($class)) {
-                    throw new ClassNotFoundException('The given $instances_class [' . static::$instances[$derived_class][static::INSTANCES_CLASS] . '] does not exist.');
+                    throw new Exception_ClassNotFound('The given $instances_class [' . static::$instances[$derived_class][static::INSTANCES_CLASS] . '] does not exist.');
                 }
             } catch (Exception $ex) {
-                throw new ClassNotFoundException('The given $instances_class [' . static::$instances[$derived_class][static::INSTANCES_CLASS] . '] does not exist.', 0, $ex);
+                throw new Exception_ClassNotFound('The given $instances_class [' . static::$instances[$derived_class][static::INSTANCES_CLASS] . '] does not exist.', 0, $ex);
             }
 
             if (Utils::class_implements($class, __NAMESPACE__ . '\Forgeable')) {
@@ -288,11 +288,11 @@ abstract class GenericMultiton
      *
      * @final
      * @since       0.1     introduced final public function __sleep()
-     * @throws      MethodNotAllowedException
+     * @throws      Exception_MethodNotAllowed
      */
     final public function __sleep()
     {
-        throw new MethodNotAllowedException("No serialization allowed.", E_USER_ERROR);
+        throw new Exception_MethodNotAllowed("No serialization allowed.", E_USER_ERROR);
     }
 
     /**
@@ -300,11 +300,11 @@ abstract class GenericMultiton
      *
      * @final
      * @since       0.1     introduced final public function __wakeup()
-     * @throws      MethodNotAllowedException
+     * @throws      Exception_MethodNotAllowed
      */
     final public function __wakeup()
     {
-        throw new MethodNotAllowedException("No unserialization allowed.", E_USER_ERROR);
+        throw new Exception_MethodNotAllowed("No unserialization allowed.", E_USER_ERROR);
     }
 
     /**
@@ -312,11 +312,11 @@ abstract class GenericMultiton
      *
      * @final
      * @since       0.1     introduced final public function __clone()
-     * @throws      MethodNotAllowedException
+     * @throws      Exception_MethodNotAllowed
      */
     final public function __clone()
     {
-        throw new MethodNotAllowedException("No cloning allowed.", E_USER_ERROR);
+        throw new Exception_MethodNotAllowed("No cloning allowed.", E_USER_ERROR);
     }
 
     //endregion

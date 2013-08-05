@@ -234,11 +234,11 @@ abstract class Multiton
      *
      * @final
      * @since       0.1     introduced final public function __sleep()
-     * @throws      MethodNotAllowedException
+     * @throws      Exception_MethodNotAllowed
      */
     final public function __sleep()
     {
-        throw new MethodNotAllowedException("No serialization allowed.", E_USER_ERROR);
+        throw new Exception_MethodNotAllowed("No serialization allowed.", E_USER_ERROR);
     }
 
     /**
@@ -246,11 +246,11 @@ abstract class Multiton
      *
      * @final
      * @since       0.1     introduced final public function __wakeup()
-     * @throws      MethodNotAllowedException
+     * @throws      Exception_MethodNotAllowed
      */
     final public function __wakeup()
     {
-        throw new MethodNotAllowedException("No unserialization allowed.", E_USER_ERROR);
+        throw new Exception_MethodNotAllowed("No unserialization allowed.", E_USER_ERROR);
     }
 
     /**
@@ -258,11 +258,11 @@ abstract class Multiton
      *
      * @final
      * @since       0.1     introduced final public function __clone()
-     * @throws      MethodNotAllowedException
+     * @throws      Exception_MethodNotAllowed
      */
     final public function __clone()
     {
-        throw new MethodNotAllowedException("No cloning allowed.", E_USER_ERROR);
+        throw new Exception_MethodNotAllowed("No cloning allowed.", E_USER_ERROR);
     }
 
     //endregion
