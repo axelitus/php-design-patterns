@@ -179,6 +179,7 @@ abstract class Multiton
      * Prepares the instances array.
      *
      * Verifies that the instances array is properly set.
+     * @return string   Returns the result of the get_called_class() call.
      */
     protected static function prepare_instances()
     {
