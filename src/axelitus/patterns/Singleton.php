@@ -76,9 +76,7 @@ abstract class Singleton
      */
     public static function instance($params = null)
     {
-        static::$instances = is_null(static::$instances) ? [] : static::$instances;
-
-        $derived_class = get_called_class();
+        $derived_class = static::prepare_instances();
         if (empty(static::$instances) or !isset(static::$instances[$derived_class])
             or !(static::$instances[$derived_class] instanceof $derived_class)
         ) {
@@ -113,6 +111,7 @@ abstract class Singleton
      */
     public static function kill()
     {
+        $derived_class = static::prepare_instances();
         static::$instances[get_called_class()] = null;
     }
 
@@ -131,6 +130,20 @@ abstract class Singleton
     {
         static::kill();
         return call_user_func_array(get_called_class() . '::instance', func_get_args());
+    }
+
+    /**
+     * Prepares the instances array.
+     *
+     * Verifies that the instances array is properly set.
+     * @return string   Returns the result of the get_called_class() call.
+     */
+    protected static function prepare_instances()
+    {
+        $derived_class = get_called_class();
+        static::$instances = (isset(static::$instances) and is_array(static::$instances)) ? static::$instances : [];
+
+        return $derived_class;
     }
 
     //endregion
