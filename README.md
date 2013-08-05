@@ -5,6 +5,7 @@ A framework independant PHP  package that contains base clases to easily extend 
 ## Package Information
 
 * **Package:** Patterns
+* **Version:** 0.1
 * **Namespace:** axelitus\patterns
 * **Author:** Axel Pardemann (axelitusdev@gmail.com)
 * **Roadmap:** [axelitus/php-patterns at Interstate]()
