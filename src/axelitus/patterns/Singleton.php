@@ -26,7 +26,7 @@ abstract class Singleton
     //region Constants
 
     /**
-     * @since   0.1     introduced INIT_METHOD_NAME
+     * @since   0.1     introduced const INIT_METHOD_NAME = 'init'
      * @type    string      The initialization method name (declaration of this method is optional)
      */
     const INIT_METHOD_NAME = 'init';
@@ -38,10 +38,11 @@ abstract class Singleton
 
     /**
      * @static
-     * @since       0.1     introduced $instance
-     * @type    mixed       The Singleton's instance
+     * @since       0.1     introduced protected static $instance = null;
+     * @type    array       The Singleton's instances dictionary (for derived classes)
+     *                      static vars cannot be initialized with arrays, so it must be null.
      **/
-    protected static $instance = null;
+    protected static $instances = null;
 
     //endregion
 
@@ -75,21 +76,30 @@ abstract class Singleton
      */
     public static function instance($params = null)
     {
-        if (static::$instance == null or !static::$instance instanceof static) {
-            static::$instance = new static();
+        static::$instances = is_null(static::$instances) ? [] : static::$instances;
 
-            if (method_exists(static::$instance, static::INIT_METHOD_NAME) and is_callable(
+        $derived_class = get_called_class();
+        if (empty(static::$instances) or !isset(static::$instances[$derived_class])
+            or !(static::$instances[$derived_class] instanceof $derived_class)
+        ) {
+            // TODO: if implements Forgeable call forge instead
+            static::$instances[$derived_class] = new $derived_class($params);
+
+            if (method_exists(static::$instances[$derived_class], static::INIT_METHOD_NAME) and is_callable(
                     array(
-                        static::$instance,
+                        static::$instances[$derived_class],
                         static::INIT_METHOD_NAME
                     )
                 )
             ) {
-                call_user_func_array(array(static::$instance, static::INIT_METHOD_NAME), func_get_args());
+                call_user_func_array(
+                    array(static::$instances[$derived_class], static::INIT_METHOD_NAME),
+                    func_get_args()
+                );
             }
         }
 
-        return static::$instance;
+        return static::$instances[$derived_class];
     }
 
     /**
@@ -103,7 +113,7 @@ abstract class Singleton
      */
     public static function kill()
     {
-        static::$instance = null;
+        static::$instances[get_called_class()] = null;
     }
 
     /**
