@@ -69,7 +69,7 @@ abstract class Singleton
      * Forges a new instance of the Singleton or returns the existing one. The parameters are passed along to the
      * initialization method if exists to auto-initialize (configure) the newly created Singleton instance.
      *
-     * @since       0.1     introduced new method instance($params = null)
+     * @since       0.1     introduced public static function instance($params = null)
      * @static
      * @param   mixed $params,...     The Singleton's initialization parameters
      * @return  mixed       The newly created Singleton's instance
@@ -107,7 +107,7 @@ abstract class Singleton
      * should be created.
      *
      * @static
-     * @since       0.1     introduced new method kill()
+     * @since       0.1     introduced public static function kill()
      */
     public static function kill()
     {
@@ -122,7 +122,7 @@ abstract class Singleton
      * the initialization method if exists to auto-initialize (configure) the Singleton.
      *
      * @static
-     * @since       0.1     introduced new method reinstance($params = null)
+     * @since       0.1     introduced public static function reinstance($params = null)
      * @param mixed $params,...     The Singleton's initialization parameters
      * @return mixed    The newly created Singleton's instance
      */
@@ -136,6 +136,9 @@ abstract class Singleton
      * Prepares the instances array.
      *
      * Verifies that the instances array is properly set.
+     *
+     * @static
+     * @since       0.1     introduced protected static function prepare_instances()
      * @return string   Returns the result of the get_called_class() call.
      */
     protected static function prepare_instances()
