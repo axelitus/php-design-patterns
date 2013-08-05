@@ -26,7 +26,7 @@ abstract class Multiton
     //region Constants
 
     /**
-     * @since   0.1     introduced INIT_METHOD_NAME
+     * @since   0.1     introduced const INIT_METHOD_NAME = 'init'
      * @type    string      The initialization method name (declaration of this method is optional)
      */
     const INIT_METHOD_NAME = 'init';
@@ -38,10 +38,11 @@ abstract class Multiton
 
     /**
      * @static
-     * @since       0.1     introduced $instances
-     * @type    mixed       The multiton's instances array
+     * @since       0.1     introduced protected static $instances = [];
+     * @type    array       The multiton's instances array
+     *                      static vars cannot be initialized with arrays, so it must be null.
      **/
-    protected static $instances = [];
+    protected static $instances = null;
 
     //endregion
 
@@ -79,21 +80,30 @@ abstract class Multiton
      */
     public static function instance($key = 'default', $params = null)
     {
-        if (!isset(static::$instances[$key]) or !static::$instances[$key] instanceof static) {
-            static::$instances[$key] = new static();
+        $derived_class = static::prepare_instances();
 
-            if (method_exists(static::$instances[$key], static::INIT_METHOD_NAME) and is_callable(
+        if (empty(static::$instances) or !isset(static::$instances[$derived_class])
+            or !isset(static::$instances[$derived_class][$key])
+            or !(static::$instances[$derived_class][$key] instanceof $derived_class)
+        ) {
+            // TODO: if implements Forgeable call forge instead
+            static::$instances[$derived_class][$key] = new $derived_class($params);
+
+            if (method_exists(static::$instances[$derived_class][$key], static::INIT_METHOD_NAME) and is_callable(
                     array(
-                        static::$instances[$key],
+                        static::$instances[$derived_class][$key],
                         static::INIT_METHOD_NAME
                     )
                 )
             ) {
-                call_user_func_array(array(static::$instances[$key], static::INIT_METHOD_NAME), func_get_args());
+                call_user_func_array(
+                    array(static::$instances[$derived_class][$key], static::INIT_METHOD_NAME),
+                    func_get_args()
+                );
             }
         }
 
-        return static::$instances[$key];
+        return static::$instances[$derived_class][$key];
     }
 
     /**
@@ -108,8 +118,10 @@ abstract class Multiton
      */
     public static function kill($key = 'default')
     {
-        static::$instances[$key] = null;
-        unset(static::$instances[$key]);
+        $derived_class = static::prepare_instances();
+
+        static::$instances[$derived_class][$key] = null;
+        unset(static::$instances[$derived_class][$key]);
     }
 
     /**
@@ -122,7 +134,8 @@ abstract class Multiton
      */
     public static function clear()
     {
-        static::$instances = [];
+        $derived_class = static::prepare_instances();
+        static::$instances[$derived_class] = [];
     }
 
     /**
@@ -157,7 +170,25 @@ abstract class Multiton
      */
     public static function count()
     {
-        return count(static::$instances);
+        $derived_class = static::prepare_instances();
+
+        return count(static::$instances[$derived_class]);
+    }
+
+    /**
+     * Prepares the instances array.
+     *
+     * Verifies that the instances array is properly set.
+     */
+    protected static function prepare_instances()
+    {
+        $derived_class = get_called_class();
+        static::$instances = (isset(static::$instances) and is_array(static::$instances)) ? static::$instances : [];
+        static::$instances[$derived_class] = (isset(static::$instances[$derived_class]) and is_array(
+                static::$instances[$derived_class]
+            )) ? static::$instances[$derived_class] : [];
+
+        return $derived_class;
     }
 
     //endregion
