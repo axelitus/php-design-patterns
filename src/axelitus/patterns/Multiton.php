@@ -101,7 +101,7 @@ abstract class Multiton
                     and static::$instances[$derived_class][static::INSTANCES_FORGEABLE])
                 or (static::$instances[$derived_class][static::INSTANCES_FORGEABLE] = Utils::class_implements(
                     $derived_class,
-                    __NAMESPACE__ . '\Forgeable'
+                    __NAMESPACE__ . '\interfaces\Forgeable'
                 ))
             ) {
                 static::$instances[$derived_class][static::INSTANCES_OBJECTS][$key] = $derived_class::forge($params);
@@ -234,11 +234,11 @@ abstract class Multiton
      *
      * @final
      * @since       0.1     introduced final public function __sleep()
-     * @throws      Exception_MethodNotAllowed
+     * @throws      exceptions\MethodNotAllowedException
      */
     final public function __sleep()
     {
-        throw new Exception_MethodNotAllowed("No serialization allowed.", E_USER_ERROR);
+        throw new exceptions\MethodNotAllowedException("No serialization allowed.", E_USER_ERROR);
     }
 
     /**
@@ -246,11 +246,11 @@ abstract class Multiton
      *
      * @final
      * @since       0.1     introduced final public function __wakeup()
-     * @throws      Exception_MethodNotAllowed
+     * @throws      exceptions\MethodNotAllowedException
      */
     final public function __wakeup()
     {
-        throw new Exception_MethodNotAllowed("No unserialization allowed.", E_USER_ERROR);
+        throw new exceptions\MethodNotAllowedException("No unserialization allowed.", E_USER_ERROR);
     }
 
     /**
@@ -258,11 +258,11 @@ abstract class Multiton
      *
      * @final
      * @since       0.1     introduced final public function __clone()
-     * @throws      Exception_MethodNotAllowed
+     * @throws      exceptions\MethodNotAllowedException
      */
     final public function __clone()
     {
-        throw new Exception_MethodNotAllowed("No cloning allowed.", E_USER_ERROR);
+        throw new exceptions\MethodNotAllowedException("No cloning allowed.", E_USER_ERROR);
     }
 
     //endregion

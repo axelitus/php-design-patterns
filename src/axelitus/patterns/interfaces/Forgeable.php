@@ -11,15 +11,15 @@
  * @source      https://github.com/axelitus/php-patterns
  */
 
-namespace axelitus\patterns;
+namespace axelitus\patterns\interfaces;
 
 /**
- * interface Forgeable
+ * interface interfaces\Forgeable
  *
- * An interface that defines a Forgeable object.
+ * An interface that defines a interfaces\Forgeable object.
  *
  * @package axelitus\patterns
- * @since       0.1     introduced interface Forgeable
+ * @since       0.1     introduced interface interfaces\Forgeable
  * @used-by     Factory
  */
 interface Forgeable
@@ -30,7 +30,7 @@ interface Forgeable
      * Forges a new instance of the implementing class.
      *
      * @static
-     * @since       0.1     introduced public static function forgeable($params = null)
+     * @since       0.1     introduced public static function interfaces\Forgeable($params = null)
      * @param mixed $params,...     The parameters to forge the implementing class.
      * @return Forgeable        The newly forged object
      */

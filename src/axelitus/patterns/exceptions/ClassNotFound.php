@@ -11,16 +11,16 @@
  * @source      https://github.com/axelitus/php-patterns
  */
 
-namespace axelitus\patterns;
+namespace axelitus\patterns\exceptions;
 
 /**
- * Class Exception_MethodNotAllowed
+ * Class exceptions\ClassNotFoundException
  *
- * An exception that is thrown when a method is not allowed.
+ * An exception that is thrown when a class is not found.
  *
  * @package axelitus\patterns
- * @since       0.1     introduced class Exception_MethodNotAllowed extends \RuntimeException
+ * @since       0.1     introduced class exceptions\ClassNotFoundException extends \RuntimeException
  */
-class Exception_MethodNotAllowed extends \RuntimeException
+class ClassNotFoundException extends \RuntimeException
 {
 }

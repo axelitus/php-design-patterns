@@ -27,10 +27,10 @@ class Factory_FooFactory extends src\Factory
     //region extends axelitus\patterns\Factory
 
     /**
-     * Builds a new Forgeable object
+     * Builds a new interfaces\Forgeable object
      *
      * @since       0.1     introduced public function produce($params = null)
-     * @param mixed $params,...     The parameters to build a Forgeable object
+     * @param mixed $params,...     The parameters to build a interfaces\Forgeable object
      * @return mixed
      */
     public function produce($params = null)

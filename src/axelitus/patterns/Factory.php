@@ -20,26 +20,26 @@ namespace axelitus\patterns;
  *
  * @package axelitus\patterns
  * @since       0.1     introduced class Factory
- * @uses    Forgeable
+ * @uses    interfaces\Forgeable
  */
 abstract class Factory
 {
     /**
-     * Determines if the given instance is an instanceof the given Forgeable class.
+     * Determines if the given instance is an instanceof the given interfaces\Forgeable class.
      *
-     * The function ensures that the given class exists and implements Forgeable, if not then it fails
+     * The function ensures that the given class exists and implements interfaces\Forgeable, if not then it fails
      * and throws an InvalidArgumentException.
      *
      * @static
-     * @since       0.1     introduced public static function instance_of(Forgeable $instance, $class)
-     * @param   Forgeable $instance   The instance to check if is instanceof class
+     * @since       0.1     introduced public static function instance_of(interfaces\Forgeable $instance, $class)
+     * @param   interfaces\Forgeable $instance   The instance to check if is instanceof class
      * @param string $class      The full qualified class name (FQCN) to check if instance is instanceof it
      * @return  bool    Whether the given $instance is instanceof $class
      * @throws \InvalidArgumentException
      */
-    public static function instance_of(Forgeable $instance, $class)
+    public static function instance_of(interfaces\Forgeable $instance, $class)
     {
-        if (($forgeable = __NAMESPACE__ . '\Forgeable') == $class) {
+        if (($forgeable = __NAMESPACE__ . '\interfaces\Forgeable') == $class) {
             return true;
         }
 
@@ -49,7 +49,7 @@ abstract class Factory
 
         $implements = class_implements($class);
         if (!in_array($forgeable, $implements)) {
-            throw new \InvalidArgumentException('The given $class [' . $class . '] does not implement ' . __NAMESPACE__ . "\\Forgeable.");
+            throw new \InvalidArgumentException('The given $class [' . $class . '] does not implement ' . __NAMESPACE__ . "\\interfaces\Forgeable.");
         }
 
         return ($instance instanceof $class);
@@ -60,11 +60,11 @@ abstract class Factory
     //region Methods/Functions
 
     /**
-     * Builds a new Forgeable object
+     * Builds a new interfaces\Forgeable object
      *
      * @since       0.1     introduced abstract public function build($params = null)
-     * @param mixed $params,...     The parameters to build a Forgeable object
-     * @return  Forgeable   The newly forged instnace.
+     * @param mixed $params,...     The parameters to build a interfaces\Forgeable object
+     * @return  interfaces\Forgeable   The newly forged instnace.
      */
     abstract public function produce($params = null);
 

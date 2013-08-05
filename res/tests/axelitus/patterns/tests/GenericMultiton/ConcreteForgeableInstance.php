@@ -17,16 +17,15 @@ namespace axelitus\patterns\tests;
  * @uses axelitus\patterns
  */
 use axelitus\patterns as src;
-use axelitus\patterns\Forgeable;
 
 /**
- * Class GenericMultiton_ConcreteForgeableInstance
+ * Class GenericMultiton_Concreteinterfaces\ForgeableInstance
  *
  * An implementation of the Multiton class for running the tests.
  *
  * @package axelitus\patterns\tests
  */
-class GenericMultiton_ConcreteForgeableInstance implements src\Forgeable
+class GenericMultiton_ConcreteForgeableInstance implements src\interfaces\Forgeable
 {
     public $params = [];
 
@@ -39,9 +38,9 @@ class GenericMultiton_ConcreteForgeableInstance implements src\Forgeable
      * Forges a new instance of the implementing class.
      *
      * @static
-     * @since       0.1     introduced public static function forgeable($params = null)
+     * @since       0.1     introduced public static function interfaces\Forgeable($params = null)
      * @param mixed $params,...     The parameters to forge the implementing class.
-     * @return Forgeable        The newly forged object
+     * @return src\interfaces\Forgeable        The newly forged object
      */
     public static function forge($params = null)
     {

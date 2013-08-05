@@ -62,7 +62,7 @@ class GenericMultitonTests extends TestCase
     }
 
     /**
-     * Testes the GenericMultiton forgeable behavior.
+     * Testes the GenericMultiton interfaces\Forgeable behavior.
      *
      * @depends test_behavior
      */

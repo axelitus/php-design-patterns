@@ -19,7 +19,7 @@ namespace axelitus\patterns\tests;
 use axelitus\patterns as src;
 
 /**
- * Class GenericMultiton_ConcreteForgeable
+ * Class GenericMultiton_Concreteinterfaces\Forgeable
  *
  * An implementation of the Multiton class for running the tests.
  *

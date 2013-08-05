@@ -22,7 +22,7 @@ use axelitus\patterns as src;
  * Class Factory_Foo
  * @package axelitus\patterns\tests
  */
-class Factory_Foo implements src\Forgeable
+class Factory_Foo implements src\interfaces\Forgeable
 {
     //region Attributes
 
@@ -44,15 +44,15 @@ class Factory_Foo implements src\Forgeable
     //endregion
 
 
-    //region implements axelitus\patterns\Forgeable
+    //region implements axelitus\patterns\interfaces\Forgeable
 
     /**
      * Forges a new instance of the implementing class.
      *
      * @static
-     * @since       0.1     introduced public static function forgeable($params = null)
+     * @since       0.1     introduced public static function interfaces\Forgeable($params = null)
      * @param mixed $params,...     The parameters to forge the implementing class.
-     * @return Forgeable        The newly forged object
+     * @return interfaces\Forgeable        The newly forged object
      */
     public static function forge($params = null)
     {
