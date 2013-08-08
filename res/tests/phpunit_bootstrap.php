@@ -1,3 +1,3 @@
 <?php
 
-// set special bootstrap configuration for tests here
+require __DIR__.'/../../vendor/autoload.php';
