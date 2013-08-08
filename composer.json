@@ -3,7 +3,7 @@
     "description": "Design Patterns for PHP",
     "type": "library",
     "keywords": ["patterns", "design", "architecture", "singleton", "multiton", "factory"],
-    "homepage": "http://axelitus.mx/projects/php-patterns",
+    "homepage": "http://axelitus.mx/projects/axelitus/patterns",
     "license": "MIT",
     "authors": [
         {
