@@ -3,7 +3,7 @@
  * Part of the axelitus\patterns package.
  *
  * @package     axelitus\patterns
- * @version     0.1
+ * @version     0.2
  * @author      Axel Pardemann (axelitusdev@gmail.com)
  * @license     MIT License
  * @copyright   2013 - Axel Pardemann
@@ -11,15 +11,15 @@
  * @source      https://github.com/axelitus/php-patterns
  */
 
-namespace axelitus\patterns\tests;
+namespace axelitus\Patterns;
 
 /**
  * This folder is destined to manual tests to see what the package is doing.
  */
-require_once('../../../../../vendor/autoload.php');
+require_once('../../../vendor/autoload.php');
 
 echo "<pre>";
-echo "Package: axelitus\\patterns\r\n";
+echo "Package: axelitus/patterns\r\n";
 echo "==========================\r\n\r\n";
 
 
