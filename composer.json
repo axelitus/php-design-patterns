@@ -2,7 +2,7 @@
     "name": "axelitus/patterns",
     "description": "Design Patterns for PHP",
     "type": "library",
-    "keywords": ["patterns", "design", "architecture", "design patterns", "singleton", "multiton", "factory"],
+    "keywords": ["patterns", "design", "architecture", "singleton", "multiton", "factory"],
     "homepage": "http://axelitus.mx/projects/php-patterns",
     "license": "MIT",
     "authors": [
@@ -14,13 +14,14 @@
         }
     ],
     "support": {
-        "email": "axelitusdv@gmail.com",
-        "source": "https://github.com/axelitusdev/php-patterns",
-        "issues": "https://github.com/axelitusdev/php-patterns/issues",
-        "wiki": "https://github.com/axelitusdev/php-patterns/wiki"
+        "email": "axelitusdev@gmail.com",
+        "source": "https://github.com/axelitus/php-axelitus-patterns",
+        "issues": "https://github.com/axelitus/php-axelitus-patterns/issues",
+        "wiki": "https://github.com/axelitus/php-axelitus-patterns/wiki"
     },
     "require": {
-        "php": ">=5.4.9"
+        "php": ">=5.4.9",
+        "axelitus/base": "dev-develop"
     },
     "require-dev": {
         "phpunit/phpunit": "3.8.*",
@@ -29,8 +30,7 @@
     },
     "autoload": {
         "psr-0": {
-            "axelitus\\patterns": "src/",
-            "axelitus\\patterns\\tests": [ "res/tests/", "res/web/" ]
+            "axelitus\\Patterns": "src/"
         }
     },
     "config": {
