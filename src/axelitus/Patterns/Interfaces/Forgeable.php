@@ -1,40 +1,25 @@
 <?php
 /**
- * Part of the axelitus\patterns package.
+ * Part of composer package: axelitus/patterns
  *
- * @package     axelitus\patterns
+ * @package     axelitus\Patterns
  * @version     0.1
  * @author      Axel Pardemann (axelitusdev@gmail.com)
  * @license     MIT License
  * @copyright   2013 - Axel Pardemann
- * @link        http://axelitus.mx/projects/php-patterns
- * @source      https://github.com/axelitus/php-patterns
+ * @link        http://axelitus.mx/projects/axelitus/patterns
  */
 
 namespace axelitus\Patterns\Interfaces;
 
 /**
- * interface interfaces\Forgeable
+ * Class Forgeable
  *
- * An interface that defines a interfaces\Forgeable object.
+ * Defines an object that is forgeable.
  *
- * @package axelitus\patterns
- * @since       0.1     introduced interface interfaces\Forgeable
- * @used-by     Factory
+ * @package axelitus\Patterns\Interfaces
  */
 interface Forgeable
 {
-    //region Static Methods/Function
-
-    /**
-     * Forges a new instance of the implementing class.
-     *
-     * @static
-     * @since       0.1     introduced public static function interfaces\Forgeable($params = null)
-     * @param mixed $params,...     The parameters to forge the implementing class.
-     * @return Forgeable        The newly forged object
-     */
-    public static function forge($params = null);
-
-    //endregion
+    public static function forge();
 }
