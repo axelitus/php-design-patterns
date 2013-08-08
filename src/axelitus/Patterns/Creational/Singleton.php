@@ -45,7 +45,9 @@ abstract class Singleton
     /**
      * Gets the current singleton instance.
      *
-     * Automatically creates an instance if non exists.
+     * Automatically creates an instance if non exists. If one instance already exists, the argument list is ignored.
+     *
+     * @param mixed $args,... The arguments for creating the singleton instance.
      *
      * @return Singleton The singleton instance.
      */
@@ -61,12 +63,9 @@ abstract class Singleton
             }
 
             $args = func_get_args();
-            if(static::$cache[$class]['forgeable'])
-            {
+            if (static::$cache[$class]['forgeable']) {
                 static::$instances[$class] = call_user_func_array([$class, 'forge'], $args);
-            }
-            else
-            {
+            } else {
                 $ref = new \ReflectionClass($class);
                 $ctor = $ref->getConstructor();
                 $ctor->setAccessible(true);
@@ -92,6 +91,8 @@ abstract class Singleton
      * Renews the singleton instance.
      *
      * It automatically disposes the previously existing instance and creates a new one.
+     *
+     * @param mixed $args,... The arguments for creating the singleton instance.
      *
      * @return Singleton The new singleton instance.
      */
