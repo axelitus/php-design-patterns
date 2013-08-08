@@ -2,11 +2,11 @@
 
 <phpunit colors="true" stopOnFailure="false" bootstrap="phpunit_bootstrap.php">
     <php>
-        <server name="test_path">res/tests</server>
+        <server name="tests_path">res/tests</server>
     </php>
     <testsuites>
-        <testsuite name="patterns">
-            <directory suffix=".php">axelitus/patterns/tests</directory>
+        <testsuite name="axelitus/patterns">
+            <directory suffix=".php">axelitus/Patterns</directory>
         </testsuite>
     </testsuites>
 </phpunit>
