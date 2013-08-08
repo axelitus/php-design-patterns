@@ -16,16 +16,39 @@ use axelitus\Patterns\Utils;
 use axelitus\Patterns\Interfaces;
 use axelitus\Patterns\Exceptions;
 
+/**
+ * Class Singleton
+ *
+ * Defines a singleton object.
+ *
+ * @package axelitus\Patterns\Creational
+ */
 abstract class Singleton
 {
+    /**
+     * @type array $instances Holds the singleton instances array map (as the static var is shared amongst all derivable classes).
+     */
     protected static $instances = [];
 
+    /**
+     * @type array $cache Holds cache information about the classes.
+     */
     protected static $cache = [];
 
+    /**
+     * Prevents this class from being directly instantiated but allows sub classes to define the needed constructor
+     */
     protected function __construct()
     {
     }
 
+    /**
+     * Gets the current singleton instance.
+     *
+     * Automatically creates an instance if non exists.
+     *
+     * @return Singleton The singleton instance.
+     */
     public static function instance()
     {
         $class = get_called_class();
@@ -56,12 +79,22 @@ abstract class Singleton
         return static::$instances[$class];
     }
 
+    /**
+     * Disposes the current singleton instance.
+     */
     public static function dispose()
     {
         $class = get_called_class();
         unset(static::$instances[$class]);
     }
 
+    /**
+     * Renews the singleton instance.
+     *
+     * It automatically disposes the previously existing instance and creates a new one.
+     *
+     * @return Singleton The new singleton instance.
+     */
     public static function renew()
     {
         $class = get_called_class();
