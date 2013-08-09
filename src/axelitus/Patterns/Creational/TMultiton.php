@@ -16,6 +16,13 @@ use axelitus\Patterns\Utils;
 use axelitus\Patterns\Interfaces;
 use axelitus\Patterns\Exceptions;
 
+/**
+ * Class TMultiton
+ *
+ * Defines a generic multiton object.
+ *
+ * @package axelitus\Patterns\Creational
+ */
 abstract class TMultiton
 {
     /**
