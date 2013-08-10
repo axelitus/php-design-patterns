@@ -1,9 +1,9 @@
 {
-    "name": "axelitus/patterns",
+    "name": "axelitus/design-patterns",
     "description": "Design Patterns for PHP",
     "type": "library",
     "keywords": ["patterns", "design", "architecture", "singleton", "multiton", "factory"],
-    "homepage": "http://axelitus.mx/projects/axelitus/patterns",
+    "homepage": "http://axelitus.mx/projects/axelitus/design-patterns",
     "license": "MIT",
     "authors": [
         {
@@ -15,9 +15,9 @@
     ],
     "support": {
         "email": "axelitusdev@gmail.com",
-        "source": "https://github.com/axelitus/php-axelitus-patterns",
-        "issues": "https://github.com/axelitus/php-axelitus-patterns/issues",
-        "wiki": "https://github.com/axelitus/php-axelitus-patterns/wiki"
+        "source": "https://github.com/axelitus/php-design-patterns",
+        "issues": "https://github.com/axelitus/php-design-patterns/issues",
+        "wiki": "https://github.com/axelitus/php-design-patterns/wiki"
     },
     "require": {
         "php": ">=5.4.9"
