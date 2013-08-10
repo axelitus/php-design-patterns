@@ -3,7 +3,7 @@
  * Part of composer package: axelitus/patterns
  *
  * @package     axelitus\Patterns
- * @version     0.2
+ * @version     0.3
  * @author      Axel Pardemann (axelitusdev@gmail.com)
  * @license     MIT License
  * @copyright   2013 - Axel Pardemann
@@ -16,6 +16,13 @@ use axelitus\Patterns\Utils;
 use axelitus\Patterns\Interfaces;
 use axelitus\Patterns\Exceptions;
 
+/**
+ * Class TMultiton
+ *
+ * Defines a generic Multiton object.
+ *
+ * @package axelitus\Patterns\Creational
+ */
 abstract class TMultiton
 {
     /**
@@ -24,7 +31,7 @@ abstract class TMultiton
     protected static $T = '';
 
     /**
-     * @type array $instances Holds the multiton instances array map (as the static var is shared amongst all derivable classes).
+     * @type array $instances Holds the Multiton instances array map (as the static var is shared amongst all derivable classes).
      */
     protected static $instances = [];
 
@@ -41,17 +48,21 @@ abstract class TMultiton
     }
 
     /**
-     * Gets the multiton instance referenced by key.
+     * Gets the Multiton instance referenced by key.
      *
      * Automatically creates an instance if non exists. If one instance already exists, the argument list is ignored.
      *
-     * @param string $key      The key of the multiton instance to get.
-     * @param mixed  $args,... The arguments for creating the multiton instance.
+     * @param string $key      The key of the Multiton instance to get.
+     * @param mixed  $args,... The arguments for creating the Multiton instance.
      *
-     * @return Multiton The multiton instance.
+     * @return Multiton The Multiton instance.
      */
     public static function instance($key = 'default')
     {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
         $class = static::$T;
         if (!class_exists($class)) {
             throw new Exceptions\ClassNotFoundException("The class $class was not found.");
@@ -82,30 +93,40 @@ abstract class TMultiton
     }
 
     /**
-     * Disposes the multiton instance referenced by key.
+     * Removes the Multiton instance referenced by key.
+     *
+     * @param string $key      The key of the Multiton instance to remove.
      */
     public static function dispose($key)
     {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
         $class = static::$T;
         unset(static::$instances[$class][$key]);
     }
 
     /**
-     * Renews the multiton instance referenced by key.
+     * Renews the Multiton instance referenced by key.
      *
      * It automatically disposes the previously existing instance and creates a new one.
      *
-     * @param string $key      The key of the multiton instance to get.
-     * @param mixed  $args,... The arguments for creating the multiton instance.
+     * @param string $key      The key of the Multiton instance to get.
+     * @param mixed  $args,... The arguments for creating the Multiton instance.
      *
-     * @return Singleton The new singleton instance.
+     * @return Singleton The new Multiton instance.
      */
     public static function renew($key = 'default')
     {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
         $class = get_called_class();
         $args = [$key] + func_get_args();
 
-        static::dispose($key);
+        static::remove($key);
         return call_user_func_array([$class, 'instance'], $args);
     }
 

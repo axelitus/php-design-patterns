@@ -3,7 +3,7 @@
  * Part of composer package: axelitus/patterns
  *
  * @package     axelitus\Patterns
- * @version     0.2
+ * @version     0.3
  * @author      Axel Pardemann (axelitusdev@gmail.com)
  * @license     MIT License
  * @copyright   2013 - Axel Pardemann
@@ -15,10 +15,9 @@ namespace axelitus\Patterns;
 /**
  * Class Utils
  *
- * A utilities class
+ * Has some useful utilities encapsulated.
  *
- * @package     axelitus\patterns
- * @since       0.1     introduced class Singleton
+ * @package axelitus\Patterns
  */
 final class Utils
 {

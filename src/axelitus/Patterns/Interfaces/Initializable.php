@@ -13,20 +13,18 @@
 namespace axelitus\Patterns\Interfaces;
 
 /**
- * Class Forgeable
+ * Class Initializable
  *
- * Defines the interface for an object that is forgeable.
+ * Defines the interface for an object that is initializable.
  *
  * @package axelitus\Patterns\Interfaces
  */
-interface Forgeable
+interface Initializable
 {
     /**
-     * Forges a new object.
+     * Initializes the new object.
      *
-     * @param mixed $args,... The arguments to forge the object
-     *
-     * @return mixed The forged object.
+     * @param mixed $args,... The arguments to forge the object.
      */
-    public static function forge();
+    public function init();
 }

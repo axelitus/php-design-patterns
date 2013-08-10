@@ -17,16 +17,21 @@ use axelitus\Patterns\Interfaces;
 use axelitus\Patterns\Exceptions;
 
 /**
- * Class Multiton
+ * Class TSingleton
  *
- * Defines a Multiton object.
+ * Defines a generic Singleton object.
  *
  * @package axelitus\Patterns\Creational
  */
-abstract class Multiton
+abstract class Singleton
 {
     /**
-     * @type array $instances Holds the Multiton instances array map (as the static var is shared amongst all derivable classes).
+     * @type string $T The full qualified class name (FQCN) of the class to be instantiated. This field should be declared in all derived classes with the appropriate class.
+     */
+    protected static $T = '';
+
+    /**
+     * @type array $instances Holds the Singleton instances array map (as the static var is shared amongst all derivable classes).
      */
     protected static $instances = [];
 
@@ -43,23 +48,22 @@ abstract class Multiton
     }
 
     /**
-     * Gets the Multiton instance referenced by key.
+     * Gets the current Singleton instance.
      *
      * Automatically creates an instance if non exists. If one instance already exists, the argument list is ignored.
      *
-     * @param string $key      The key of the Multiton instance to get.
-     * @param mixed  $args,... The arguments for creating the Multiton instance.
+     * @param mixed $args,... The arguments for creating the Singleton instance.
      *
-     * @return Multiton The Multiton instance.
+     * @return Singleton The Singleton instance.
      */
-    public static function instance($key = 'default')
+    public static function instance()
     {
-        if (!is_string($key) and !empty($key)) {
-            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        $class = static::$T;
+        if (!class_exists($class)) {
+            throw new Exceptions\ClassNotFoundException("The class $class was not found.");
         }
 
-        $class = get_called_class();
-        if (!array_key_exists($class, static::$instances) or !array_key_exists($key, static::$instances[$class])) {
+        if (!array_key_exists($class, static::$instances)) {
             if (!array_key_exists($class, static::$cache)) {
                 static::$cache[$class]['forgeable'] = Utils::class_implements(
                     $class,
@@ -67,57 +71,46 @@ abstract class Multiton
                 );
             }
 
-            $args = array_slice(func_get_args(), 1);
+            $args = func_get_args();
             if (static::$cache[$class]['forgeable']) {
-                static::$instances[$class][$key] = call_user_func_array([$class, 'forge'], $args);
+                static::$instances[$class] = call_user_func_array([$class, 'forge'], $args);
             } else {
                 $ref = new \ReflectionClass($class);
                 $ctor = $ref->getConstructor();
                 $ctor->setAccessible(true);
 
-                static::$instances[$class][$key] = $ref->newInstanceWithoutConstructor();
-                $ctor->invokeArgs(static::$instances[$class][$key], $args);
+                static::$instances[$class] = $ref->newInstanceWithoutConstructor();
+                $ctor->invokeArgs(static::$instances[$class], $args);
             }
         }
 
-        return static::$instances[$class][$key];
+        return static::$instances[$class];
     }
 
     /**
-     * Removes the Multiton instance referenced by key.
-     *
-     * @param string $key      The key of the Multiton instance to remove.
+     * Removes the current Singleton instance.
      */
-    public static function remove($key)
+    public static function remove()
     {
-        if (!is_string($key) and !empty($key)) {
-            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
-        }
-
-        $class = get_called_class();
-        unset(static::$instances[$class][$key]);
+        $class = static::$T;
+        unset(static::$instances[$class]);
     }
 
     /**
-     * Renews the Multiton instance referenced by key.
+     * Renews the Singleton instance.
      *
      * It automatically disposes the previously existing instance and creates a new one.
      *
-     * @param string $key      The key of the Multiton instance to renew.
-     * @param mixed  $args,... The arguments for creating the Multiton instance.
+     * @param mixed $args,... The arguments for creating the Singleton instance.
      *
-     * @return Multiton The new Multiton instance.
+     * @return Singleton The new Singleton instance.
      */
-    public static function renew($key = 'default')
+    public static function renew()
     {
-        if (!is_string($key) and !empty($key)) {
-            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
-        }
-
         $class = get_called_class();
-        $args = [$key] + func_get_args();
+        $args = func_get_args();
 
-        static::remove($key);
+        static::remove();
         return call_user_func_array([$class, 'instance'], $args);
     }
 

@@ -10,13 +10,15 @@
  * @link        http://axelitus.mx/projects/axelitus/patterns
  */
 
-namespace axelitus\Patterns;
+namespace axelitus\Patterns\SingletonShelf;
+
+use axelitus\Patterns\Creational;
 
 /**
- * Class TestCase
+ * Class FooShelf
  *
- * @package axelitus\patterns\tests
+ * @package axelitus\Patterns\SingletonShelf
  */
-abstract class TestCase extends \PHPUnit_Framework_TestCase
+class FooShelf extends Creational\SingletonShelf
 {
 }

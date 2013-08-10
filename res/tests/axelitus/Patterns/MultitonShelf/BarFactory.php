@@ -10,27 +10,17 @@
  * @link        http://axelitus.mx/projects/axelitus/patterns
  */
 
-namespace axelitus\Patterns\Creational;
+namespace axelitus\Patterns\MultitonShelf;
 
-use axelitus\Patterns\Interfaces;
+use axelitus\Patterns\Creational;
 
 /**
- * Class Factory
+ * Class BarFactory
  *
- * Defines a Factory object.
- *
- * @package axelitus\Patterns\Creational
+ * @package axelitus\Patterns\MultitonShelf
  */
-abstract class Factory
+class BarFactory extends Creational\Factory
 {
-    /**
-     *
-     */
-    public function __construct()
-    {
-        // do nothing in the base abstract class.
-    }
-
     /**
      * Builds a new object
      *
@@ -38,5 +28,10 @@ abstract class Factory
      *
      * @return mixed    The newly created object.
      */
-    abstract public function make();
+    public function make()
+    {
+        $value = func_get_arg(0);
+        return Bar::forge($value);
+    }
+
 }

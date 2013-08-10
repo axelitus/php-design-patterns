@@ -10,13 +10,15 @@
  * @link        http://axelitus.mx/projects/axelitus/patterns
  */
 
-namespace axelitus\Patterns;
+namespace axelitus\Patterns\MultitonShelf;
+
+use axelitus\Patterns\Creational;
 
 /**
- * Class TestCase
+ * Class BarShelf
  *
- * @package axelitus\patterns\tests
+ * @package axelitus\Patterns\MultitonShelf
  */
-abstract class TestCase extends \PHPUnit_Framework_TestCase
+class BarShelf extends Creational\MultitonShelf
 {
 }
