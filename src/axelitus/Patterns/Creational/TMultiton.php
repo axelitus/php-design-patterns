@@ -12,9 +12,9 @@
 
 namespace axelitus\Patterns\Creational;
 
-use axelitus\Patterns\Utils;
+use axelitus\Base\Exceptions;
 use axelitus\Patterns\Interfaces;
-use axelitus\Patterns\Exceptions;
+use axelitus\Patterns\Utils;
 
 /**
  * Class TMultiton
@@ -29,12 +29,10 @@ abstract class TMultiton
      * @type string $T The full qualified class name (FQCN) of the class to be instantiated. This field should be declared in all derived classes with the appropriate class.
      */
     protected static $T = '';
-
     /**
      * @type array $instances Holds the Multiton instances array map (as the static var is shared amongst all derivable classes).
      */
     protected static $instances = [];
-
     /**
      * @type array $cache Holds cache information about the classes.
      */

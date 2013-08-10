@@ -1,19 +1,19 @@
 # Design Patterns for PHP
 
-A framework independant PHP  package that contains base clases to easily extend and implement some design patterns.
+A framework agnostic PHP package that contains base classes to easily extend and implement some design patterns.
 
 ## Package Information
 
 * **Package:** Patterns
-* **Version:** 0.3
-* **Namespace:** axelitus\patterns
+* **Version:** 0.3.1
+* **Namespace:** axelitus\DesignPatterns
 * **Author:** Axel Pardemann (axelitusdev@gmail.com)
-* **Roadmap:** [axelitus/patterns at Interstate](http://roadma.ps/2TA)
-* **Repository**: [axelitus/php-axelitus-patterns at GitHub](https://github.com/axelitus/php-axelitus-patterns "axelitus/php-axelitus-patterns at GitHub")
-* **Build Status (master):** [![Build Status](https://secure.travis-ci.org/axelitus/php-axelitus-patterns.png?branch=master)](http://travis-ci.org/axelitus/php-axelitus-patterns)
-* **Build Status (develop):** [![Build Status](https://secure.travis-ci.org/axelitus/php-axelitus-patterns.png?branch=develop)](http://travis-ci.org/axelitus/php-axelitus-patterns)
-* **Composer Package:** [axelitus/patterns at Packagist](http://packagist.org/packages/axelitus/patterns "axelitus/patterns at Packagist")
-* **Issue Tracker:** [GitHub's issue tracker](https://github.com/axelitus/php-axelitus-patterns/issues "GitHub's issue tracker")
+* **Roadmap:** [axelitus/design-patterns at Interstate](http://roadma.ps/2TA "axelitus/design-patterns at Interstate")
+* **Repository**: [axelitus/php-design-patterns at GitHub](https://github.com/axelitus/php-design-patterns "axelitus/php-design-patterns at GitHub")
+* **Build Status (master):** [![Build Status](https://secure.travis-ci.org/axelitus/php-design-patterns.png?branch=master)](http://travis-ci.org/axelitus/php-design-patterns)
+* **Build Status (develop):** [![Build Status](https://secure.travis-ci.org/axelitus/php-design-patterns.png?branch=develop)](http://travis-ci.org/axelitus/php-design-patterns)
+* **Composer Package:** [axelitus/design-patterns at Packagist](http://packagist.org/packages/axelitus/design-patterns "axelitus/design-patterns at Packagist")
+* **Issue Tracker:** [GitHub's issue tracker](https://github.com/axelitus/php-design-patterns/issues "GitHub's issue tracker")
 
 ## Requirements
 
@@ -33,26 +33,26 @@ Being PSR-2 compliant means this package can be easily installed by using [Compo
 
 ## Contents
 
-All classes are referenced to the base namespace if not otherwise stated.
+All classes are referenced to the package namespace if not otherwise stated.
 
- - **\Creational\Factory** - Defines a Factory object.
- - **\Creational\Multiton** - Defines a Multiton object.
- - **\Creational\MultitonShelf** - Defines a MultitonShelf object.
- - **\Creational\Singleton** - Defines a Singleton object.
- - **\Creational\SingletonShelf** - Defines a SingletonShelf object.
- - **\Creational\TMultiton** - Defines a generic Multiton object.
- - **\Creational\TSingleton** - Defines a generic Singleton object.
- - **\Exceptions\ClassNotFoundException** - The exception to throw when a class is not found (could not be loaded).
- - **\Exceptions\MethodNotAllowedException** - The exception to throw when a method is not allowed.
- - **\Interfaces\Forgeable** - Defines the interface for an object that is forgeable.
- - **\Interfaces\Initializable** - Defines the interface for an object that is initializable.
  - **Utils** - Has some useful utilities encapsulated.
+
+ - **Creational\Factory** - Defines a Factory object.
+ - **Creational\Multiton** - Defines a Multiton object.
+ - **Creational\MultitonShelf** - Defines a MultitonShelf object.
+ - **Creational\Singleton** - Defines a Singleton object.
+ - **Creational\SingletonShelf** - Defines a SingletonShelf object.
+ - **Creational\TMultiton** - Defines a generic Multiton object.
+ - **Creational\TSingleton** - Defines a generic Singleton object.
+
+ - **Interfaces\Forgeable** - Defines the interface for an object that is forgeable.
+ - **Interfaces\Initializable** - Defines the interface for an object that is initializable.
 
 ## How to install
 
 To install this package and use it in your app just follow these instructions (if you haven't read the documentation from [Composer](http://getcomposer.org) please do so before you continue):
 
-1. Download composer if you haven't already done so (use your preferred method). Exmaple:
+1. Download composer if you haven't already done so (use your preferred method). Example:
 ```
 $ curl -s https://getcomposer.org/installer | php
 ```
@@ -60,7 +60,7 @@ $ curl -s https://getcomposer.org/installer | php
 2. Place a `require` statement inside your `composer.json` file replacing `<version>` with the desired version. Example:
 ```
 "require": {
-    "axelitus/patterns": "<version>"
+    "axelitus/design-patterns": "<version>"
 }
 ```
 
@@ -76,5 +76,5 @@ require 'vendor/autoload.php';
 
 5. Finally just use the package classes as needed:
 ```
-axelitus\Patterns\[<sub-namespace>\...]<class>::<function>(<params>);
+axelitus\DesignPatterns\[<sub-namespace>\...]<class>::<function>(<params>);
 ```
