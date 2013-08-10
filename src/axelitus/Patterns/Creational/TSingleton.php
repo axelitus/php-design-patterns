@@ -19,7 +19,7 @@ use axelitus\Patterns\Exceptions;
 /**
  * Class TSingleton
  *
- * Defines a generic singleton object.
+ * Defines a generic Singleton object.
  *
  * @package axelitus\Patterns\Creational
  */
@@ -31,7 +31,7 @@ abstract class Singleton
     protected static $T = '';
 
     /**
-     * @type array $instances Holds the singleton instances array map (as the static var is shared amongst all derivable classes).
+     * @type array $instances Holds the Singleton instances array map (as the static var is shared amongst all derivable classes).
      */
     protected static $instances = [];
 
@@ -48,13 +48,13 @@ abstract class Singleton
     }
 
     /**
-     * Gets the current singleton instance.
+     * Gets the current Singleton instance.
      *
      * Automatically creates an instance if non exists. If one instance already exists, the argument list is ignored.
      *
-     * @param mixed $args,... The arguments for creating the singleton instance.
+     * @param mixed $args,... The arguments for creating the Singleton instance.
      *
-     * @return Singleton The singleton instance.
+     * @return Singleton The Singleton instance.
      */
     public static function instance()
     {
@@ -88,29 +88,29 @@ abstract class Singleton
     }
 
     /**
-     * Disposes the current singleton instance.
+     * Removes the current Singleton instance.
      */
-    public static function dispose()
+    public static function remove()
     {
         $class = static::$T;
         unset(static::$instances[$class]);
     }
 
     /**
-     * Renews the singleton instance.
+     * Renews the Singleton instance.
      *
      * It automatically disposes the previously existing instance and creates a new one.
      *
-     * @param mixed $args,... The arguments for creating the singleton instance.
+     * @param mixed $args,... The arguments for creating the Singleton instance.
      *
-     * @return Singleton The new singleton instance.
+     * @return Singleton The new Singleton instance.
      */
     public static function renew()
     {
         $class = get_called_class();
         $args = func_get_args();
 
-        static::dispose();
+        static::remove();
         return call_user_func_array([$class, 'instance'], $args);
     }
 

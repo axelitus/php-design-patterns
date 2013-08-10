@@ -19,7 +19,7 @@ use axelitus\Patterns\Exceptions;
 /**
  * Class TMultiton
  *
- * Defines a generic multiton object.
+ * Defines a generic Multiton object.
  *
  * @package axelitus\Patterns\Creational
  */
@@ -31,7 +31,7 @@ abstract class TMultiton
     protected static $T = '';
 
     /**
-     * @type array $instances Holds the multiton instances array map (as the static var is shared amongst all derivable classes).
+     * @type array $instances Holds the Multiton instances array map (as the static var is shared amongst all derivable classes).
      */
     protected static $instances = [];
 
@@ -48,14 +48,14 @@ abstract class TMultiton
     }
 
     /**
-     * Gets the multiton instance referenced by key.
+     * Gets the Multiton instance referenced by key.
      *
      * Automatically creates an instance if non exists. If one instance already exists, the argument list is ignored.
      *
-     * @param string $key      The key of the multiton instance to get.
-     * @param mixed  $args,... The arguments for creating the multiton instance.
+     * @param string $key      The key of the Multiton instance to get.
+     * @param mixed  $args,... The arguments for creating the Multiton instance.
      *
-     * @return Multiton The multiton instance.
+     * @return Multiton The Multiton instance.
      */
     public static function instance($key = 'default')
     {
@@ -93,7 +93,9 @@ abstract class TMultiton
     }
 
     /**
-     * Disposes the multiton instance referenced by key.
+     * Removes the Multiton instance referenced by key.
+     *
+     * @param string $key      The key of the Multiton instance to remove.
      */
     public static function dispose($key)
     {
@@ -106,14 +108,14 @@ abstract class TMultiton
     }
 
     /**
-     * Renews the multiton instance referenced by key.
+     * Renews the Multiton instance referenced by key.
      *
      * It automatically disposes the previously existing instance and creates a new one.
      *
-     * @param string $key      The key of the multiton instance to get.
-     * @param mixed  $args,... The arguments for creating the multiton instance.
+     * @param string $key      The key of the Multiton instance to get.
+     * @param mixed  $args,... The arguments for creating the Multiton instance.
      *
-     * @return Singleton The new singleton instance.
+     * @return Singleton The new Multiton instance.
      */
     public static function renew($key = 'default')
     {
@@ -124,7 +126,7 @@ abstract class TMultiton
         $class = get_called_class();
         $args = [$key] + func_get_args();
 
-        static::dispose($key);
+        static::remove($key);
         return call_user_func_array([$class, 'instance'], $args);
     }
 

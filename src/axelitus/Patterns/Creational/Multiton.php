@@ -84,11 +84,11 @@ abstract class Multiton
     }
 
     /**
-     * Disposes the Multiton instance referenced by key.
+     * Removes the Multiton instance referenced by key.
      *
-     * @param string $key      The key of the Multiton instance to dispose.
+     * @param string $key      The key of the Multiton instance to remove.
      */
-    public static function dispose($key)
+    public static function remove($key)
     {
         if (!is_string($key) and !empty($key)) {
             throw new \InvalidArgumentException("The \$key must be a non-empty string.");
@@ -117,7 +117,7 @@ abstract class Multiton
         $class = get_called_class();
         $args = [$key] + func_get_args();
 
-        static::dispose($key);
+        static::remove($key);
         return call_user_func_array([$class, 'instance'], $args);
     }
 

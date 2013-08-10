@@ -79,9 +79,9 @@ abstract class Singleton
     }
 
     /**
-     * Disposes the current Singleton instance.
+     * Removes the current Singleton instance.
      */
-    public static function dispose()
+    public static function remove()
     {
         $class = get_called_class();
         unset(static::$instances[$class]);
@@ -101,7 +101,7 @@ abstract class Singleton
         $class = get_called_class();
         $args = func_get_args();
 
-        static::dispose();
+        static::remove();
         return call_user_func_array([$class, 'instance'], $args);
     }
 
