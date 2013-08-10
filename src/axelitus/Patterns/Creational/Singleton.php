@@ -12,9 +12,9 @@
 
 namespace axelitus\Patterns\Creational;
 
-use axelitus\Patterns\Utils;
+use axelitus\Base\Exceptions;
 use axelitus\Patterns\Interfaces;
-use axelitus\Patterns\Exceptions;
+use axelitus\Patterns\Utils;
 
 /**
  * Class Singleton
@@ -29,7 +29,6 @@ abstract class Singleton
      * @type array $instances Holds the Singleton instances array map (as the static var is shared amongst all derivable classes).
      */
     protected static $instances = [];
-
     /**
      * @type array $cache Holds cache information about the classes.
      */

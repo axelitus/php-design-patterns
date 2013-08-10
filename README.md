@@ -8,7 +8,7 @@ A framework independant PHP  package that contains base clases to easily extend 
 * **Version:** 0.3
 * **Namespace:** axelitus\patterns
 * **Author:** Axel Pardemann (axelitusdev@gmail.com)
-* **Roadmap:** [axelitus/patterns at Interstate](http://roadma.ps/2TA)
+* **Roadmap:** [axelitus/patterns at Interstate](http://roadma.ps/2TA "axelitus/patterns at Interstate")
 * **Repository**: [axelitus/php-axelitus-patterns at GitHub](https://github.com/axelitus/php-axelitus-patterns "axelitus/php-axelitus-patterns at GitHub")
 * **Build Status (master):** [![Build Status](https://secure.travis-ci.org/axelitus/php-axelitus-patterns.png?branch=master)](http://travis-ci.org/axelitus/php-axelitus-patterns)
 * **Build Status (develop):** [![Build Status](https://secure.travis-ci.org/axelitus/php-axelitus-patterns.png?branch=develop)](http://travis-ci.org/axelitus/php-axelitus-patterns)
@@ -33,20 +33,20 @@ Being PSR-2 compliant means this package can be easily installed by using [Compo
 
 ## Contents
 
-All classes are referenced to the base namespace if not otherwise stated.
+All classes are referenced to the package namespace if not otherwise stated.
 
- - **\Creational\Factory** - Defines a Factory object.
- - **\Creational\Multiton** - Defines a Multiton object.
- - **\Creational\MultitonShelf** - Defines a MultitonShelf object.
- - **\Creational\Singleton** - Defines a Singleton object.
- - **\Creational\SingletonShelf** - Defines a SingletonShelf object.
- - **\Creational\TMultiton** - Defines a generic Multiton object.
- - **\Creational\TSingleton** - Defines a generic Singleton object.
- - **\Exceptions\ClassNotFoundException** - The exception to throw when a class is not found (could not be loaded).
- - **\Exceptions\MethodNotAllowedException** - The exception to throw when a method is not allowed.
- - **\Interfaces\Forgeable** - Defines the interface for an object that is forgeable.
- - **\Interfaces\Initializable** - Defines the interface for an object that is initializable.
  - **Utils** - Has some useful utilities encapsulated.
+
+ - **Creational\Factory** - Defines a Factory object.
+ - **Creational\Multiton** - Defines a Multiton object.
+ - **Creational\MultitonShelf** - Defines a MultitonShelf object.
+ - **Creational\Singleton** - Defines a Singleton object.
+ - **Creational\SingletonShelf** - Defines a SingletonShelf object.
+ - **Creational\TMultiton** - Defines a generic Multiton object.
+ - **Creational\TSingleton** - Defines a generic Singleton object.
+
+ - **Interfaces\Forgeable** - Defines the interface for an object that is forgeable.
+ - **Interfaces\Initializable** - Defines the interface for an object that is initializable.
 
 ## How to install
 

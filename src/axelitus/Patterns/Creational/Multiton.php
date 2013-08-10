@@ -12,9 +12,9 @@
 
 namespace axelitus\Patterns\Creational;
 
-use axelitus\Patterns\Utils;
+use axelitus\Base\Exceptions;
 use axelitus\Patterns\Interfaces;
-use axelitus\Patterns\Exceptions;
+use axelitus\Patterns\Utils;
 
 /**
  * Class Multiton
@@ -29,7 +29,6 @@ abstract class Multiton
      * @type array $instances Holds the Multiton instances array map (as the static var is shared amongst all derivable classes).
      */
     protected static $instances = [];
-
     /**
      * @type array $cache Holds cache information about the classes.
      */
@@ -84,21 +83,6 @@ abstract class Multiton
     }
 
     /**
-     * Removes the Multiton instance referenced by key.
-     *
-     * @param string $key      The key of the Multiton instance to remove.
-     */
-    public static function remove($key)
-    {
-        if (!is_string($key) and !empty($key)) {
-            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
-        }
-
-        $class = get_called_class();
-        unset(static::$instances[$class][$key]);
-    }
-
-    /**
      * Renews the Multiton instance referenced by key.
      *
      * It automatically disposes the previously existing instance and creates a new one.
@@ -119,6 +103,21 @@ abstract class Multiton
 
         static::remove($key);
         return call_user_func_array([$class, 'instance'], $args);
+    }
+
+    /**
+     * Removes the Multiton instance referenced by key.
+     *
+     * @param string $key      The key of the Multiton instance to remove.
+     */
+    public static function remove($key)
+    {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
+        $class = get_called_class();
+        unset(static::$instances[$class][$key]);
     }
 
     /**
