@@ -3,7 +3,7 @@
  * Part of composer package: axelitus/patterns
  *
  * @package     axelitus\Patterns
- * @version     0.2
+ * @version     0.3
  * @author      Axel Pardemann (axelitusdev@gmail.com)
  * @license     MIT License
  * @copyright   2013 - Axel Pardemann
@@ -15,7 +15,7 @@ namespace axelitus\Patterns\Interfaces;
 /**
  * Class Forgeable
  *
- * Defines an object that is forgeable.
+ * Defines the interface for an object that is forgeable.
  *
  * @package axelitus\Patterns\Interfaces
  */
