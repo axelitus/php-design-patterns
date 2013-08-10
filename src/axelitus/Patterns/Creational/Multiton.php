@@ -54,6 +54,10 @@ abstract class Multiton
      */
     public static function instance($key = 'default')
     {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
         $class = get_called_class();
         if (!array_key_exists($class, static::$instances) or !array_key_exists($key, static::$instances[$class])) {
             if (!array_key_exists($class, static::$cache)) {
@@ -84,6 +88,10 @@ abstract class Multiton
      */
     public static function dispose($key)
     {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
         $class = get_called_class();
         unset(static::$instances[$class][$key]);
     }
@@ -100,6 +108,10 @@ abstract class Multiton
      */
     public static function renew($key = 'default')
     {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
         $class = get_called_class();
         $args = [$key] + func_get_args();
 

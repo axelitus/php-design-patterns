@@ -59,6 +59,10 @@ abstract class TMultiton
      */
     public static function instance($key = 'default')
     {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
         $class = static::$T;
         if (!class_exists($class)) {
             throw new Exceptions\ClassNotFoundException("The class $class was not found.");
@@ -93,6 +97,10 @@ abstract class TMultiton
      */
     public static function dispose($key)
     {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
         $class = static::$T;
         unset(static::$instances[$class][$key]);
     }
@@ -109,6 +117,10 @@ abstract class TMultiton
      */
     public static function renew($key = 'default')
     {
+        if (!is_string($key) and !empty($key)) {
+            throw new \InvalidArgumentException("The \$key must be a non-empty string.");
+        }
+
         $class = get_called_class();
         $args = [$key] + func_get_args();
 
