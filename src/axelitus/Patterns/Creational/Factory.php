@@ -24,6 +24,14 @@ use axelitus\Patterns\Interfaces;
 abstract class Factory
 {
     /**
+     *
+     */
+    public function __construct()
+    {
+        // do nothing in the base abstract class.
+    }
+
+    /**
      * Builds a new object
      *
      * @param mixed $params,...     The parameters to build an object.
