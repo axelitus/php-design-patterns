@@ -15,7 +15,7 @@ namespace axelitus\Patterns\Interfaces;
 /**
  * Class Initializable
  *
- * Defines an object that is forgeable.
+ * Defines the interface for an object that is initializable.
  *
  * @package axelitus\Patterns\Interfaces
  */

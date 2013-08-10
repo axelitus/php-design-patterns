@@ -15,10 +15,9 @@ namespace axelitus\Patterns;
 /**
  * Class Utils
  *
- * A utilities class
+ * Has some useful utilities encapsulated.
  *
- * @package     axelitus\patterns
- * @since       0.1     introduced class Singleton
+ * @package axelitus\Patterns
  */
 final class Utils
 {
