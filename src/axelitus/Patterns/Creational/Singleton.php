@@ -36,7 +36,7 @@ abstract class Singleton
     protected static $cache = [];
 
     /**
-     * Prevents this class from being directly instantiated but allows sub classes to define the needed constructor
+     * Prevents this class from being directly instantiated but allows sub classes to define the needed constructor logic.
      */
     protected function __construct()
     {

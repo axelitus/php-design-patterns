@@ -21,5 +21,12 @@ namespace axelitus\Patterns\Interfaces;
  */
 interface Forgeable
 {
+    /**
+     * Forges a new object.
+     *
+     * @param mixed $args,... The arguments to forge the object
+     *
+     * @return mixed The forged object.
+     */
     public static function forge();
 }
